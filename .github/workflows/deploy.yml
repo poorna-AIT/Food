@@ -10,6 +10,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4  # This pulls your code from GitHub to the server
+
       - name: Trigger Deployment Script
         run: |
           cd /home/ubuntu/deploy
