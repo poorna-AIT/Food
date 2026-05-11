@@ -3,23 +3,24 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+        stage('Clone Repository') {
             steps {
-                echo 'Build stage running successfully'
+                git(
+                    branch: 'main',
+                    credentialsId: 'github-token',
+                    url: 'https://github.com/poorna-AIT/Food.git'
+                )
             }
         }
 
-        stage('Test') {
+        stage('Deploy Website') {
             steps {
-                echo 'Test stage running successfully'
+                sh '''
+                sudo rm -rf /var/www/html/*
+                sudo cp -r * /var/www/html/
+                '''
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh 'cp -r * /var/www/html/'
-                echo 'Website deployed successfully'
-            }
-        }
     }
 }
