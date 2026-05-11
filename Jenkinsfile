@@ -3,12 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Deploy Website') {
+        stage('Deploy') {
             steps {
-                sh '''
-                rm -rf /var/www/html/*
-                cp -r * /var/www/html/
-                '''
+                sh './deploy.sh'
             }
         }
 
